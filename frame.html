@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS50.13 Week02</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+
+    <script src="https://unpkg.com/@babel/standalone@7.22.10/babel.min.js"></script>
+    
+  </head>
+
+  <body>
+    <h1>Hello world</h1>
+
+    <div id="myApp"></div>
+
+    <script type="text/babel">
+      "use strict";
+
+      function ProjectList(props){
+        console.log(props);
+
+        return(
+          <div>
+            <ol>{
+              props.list.map(
+                (item, index) => (
+                  <li key={index}>
+                  <a href={item.link}>
+                    {item.Organization}
+                  </a>
+                  </li>
+                )
+              )
+            }
+            </ol>
+          </div>
+        );
+      }
+
+      $.getJSON(
+        'LiterallyAnything',
+        function(jsonFromJquery){
+
+          const myRoot = ReactDOM.createRoot(document.getElementById('myApp'));
+
+          myRoot.render(
+            <ProjectList list={jsonFromJquery} />
+          );
+        }
+      );
+      
+    </script>
+    
+  </body>
+  
+</html>
